@@ -13,9 +13,9 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
+
 		if (args.length == 0) {
-			System.out.println("rawpath [left] [right] [entropyfile]");
+			System.out.println("rawpath");
 			return;
 		}
 		
@@ -26,16 +26,8 @@ public class Main {
 		
 		String left = null;
 		String right = null;
-		if (args.length > 2) {
-			left = args[1];
-			right = args[2];
-		}
-		
 		String entropyfile = null;
-		if (args.length > 3) {
-			entropyfile = args[3];
-		}
-		
+
 		FastBuilder builder = new FastBuilder();
 
 		if (null == right)

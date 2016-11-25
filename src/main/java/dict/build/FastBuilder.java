@@ -1,13 +1,6 @@
 package dict.build;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.util.List;
+import java.io.*;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -63,8 +56,10 @@ public class FastBuilder {
 		
 		TreeMap<String, double[]> prop = Maps.newTreeMap();
 		try {
-			List<String> lines = Files.readLines(new File("pos_prop.txt"), Charsets.UTF_8);
-			for (String l : lines) {
+            System.out.println(FastBuilder.class.getResourceAsStream("/pos_prop.txt"));
+            BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/pos_prop.txt")));
+            String l = null;
+            while (null != (l = br.readLine())) {
 				String[] seg = l.split("\t");
 				prop.put(seg[0], new double[]{Double.parseDouble(seg[1]), Double.parseDouble(seg[2]), Double.parseDouble(seg[3])});
 			}
@@ -415,8 +410,6 @@ public class FastBuilder {
 
 		
 		TreeMap<String, double[]> posProp = this.loadPosprop();
-		
-//		TreeMap<String, Integer> freq = new TreeMap<>();
 		
 		TernaryTree freq = new TernaryTree();
 
